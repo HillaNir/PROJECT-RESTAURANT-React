@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './materialize.css';
+import { Routes, Route } from 'react-router-dom';
+import MainPage from './Pages/MainPage';
+import MenuPage from './Pages/MenuPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <Routes>
+          <Route path="/" element={<MainPage/>}/>
+          <Route path="/menu" element={<MenuPage/>}/>
+        </Routes>
+      </div>
   );
 }
 
 export default App;
+
+    
+  // const [categories,setCategories] = React.useState([])
+  // React.useEffect(()=>{ // מאפשר לנו לעשות דברים שלא קשורים לריאקט, בתוך ריאקט, כמו בועה
+  //     axios.get('http://localhost:5000/categories').then(response=>{
+  //         setCategories(response.data)  
+  //     })
+  // },[])
+
+
+// בשביל axios
+// api.add_resource(DishAll,'/dishes')
+// api.add_resource(DishOne,'/dishes/<int:id>')
+// api.add_resource(CategoryAll,'/categories')
+// api.add_resource(CategoryOne,'/categories/<int:id>')
