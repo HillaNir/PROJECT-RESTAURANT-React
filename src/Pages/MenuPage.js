@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import '../menu.css';
 
 function MenuPage() {
   const [categories, setCategories] = useState([]);
@@ -29,49 +29,46 @@ function MenuPage() {
 
   return (
     <div className="row">
-      <div className="col s3">
-        <div className="categories">
-          <h4>Categories</h4>
-          <ul>
-            {categories.map((category) => (
-              <li key={category.id}>
-                <button
-                  className={`category-item ${
-                    selectedCategoryId === category.id ? 'active' : ''
-                  }`}
-                  onClick={() => filterByCategory(category.id)}
-                >
+      <div className="col s3 categories">
+        <ul>
+          {categories.map((category) => (
+            <li key={category.id}>
+              <button
+                className={`category-button ${
+                  selectedCategoryId === category.id ? 'active' : ''
+                }`}
+                onClick={() => filterByCategory(category.id)}
+              >
+                <div className="category-content">
                   <img
                     src={category.imageUrl}
                     alt={category.name}
-                    style={{
-                      width: '50px',
-                      height: '50px',
-                      borderRadius: '50%',
-                      marginBottom: '0.5rem',
-                    }}
+                    className="category-image"
                   />
-                  <span>{category.name}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+                  <span className="category-name">{category.name}</span>
+                </div>
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="col s9">
         <div className="dishes">
-          <h4>Dishes</h4>
           {selectedCategoryId ? (
-            <ul>
+            <ul className="dish-list">
               {dishes.map((dish) => (
-                <li key={dish.id}>
-                  <div className="dish-item">
-                    <img src={dish.imageUrl} alt={dish.name} />
-                    <div className="dish-details">
-                      <h5>{dish.name}</h5>
-                      <p>{dish.description}</p>
-                      <p>Price: {dish.price}</p>
-                    </div>
+                <li key={dish.id} className="dish-item">
+                  <div className="dish-image">
+                    <img
+                      src={dish.imageUrl}
+                      alt={dish.name}
+                      className="responsive-img"
+                    />
+                  </div>
+                  <div className="dish-details">
+                    <h5>{dish.name}</h5>
+                    <p>{dish.description}</p>
+                    <p>{dish.price}</p>
                   </div>
                 </li>
               ))}
