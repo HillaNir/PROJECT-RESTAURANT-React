@@ -9,7 +9,6 @@ function MenuPage() {
 
   useEffect(() => {
     axios.get('http://localhost:5000/categories').then((response) => {
-      console.log('Categories:', response.data);
       setCategories(response.data);
     });
   }, []);
@@ -19,12 +18,8 @@ function MenuPage() {
     axios
       .get(`http://localhost:5000/dishes?category_id=${category_id}`)
       .then((response) => {
-        console.log('Dishes:', response.data);
         setDishes(response.data);
       })
-      .catch((error) => {
-        console.error('Error fetching dishes:', error);
-      });
   }
 
   return (
